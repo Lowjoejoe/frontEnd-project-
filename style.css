@@ -1,8 +1,10 @@
 #header {
-    background: #fff;
-    border-radius: 2px;
-    padding: 2px;
-    font-size: 25px;
+  
+    background: rgba(22, 20, 20, 0.801);
+    border-radius: 10px;
+    padding: 20px;
+    font-family: 'Bungee Spice', cursive;
+    font-size: 30px;
     text-align: center;
     transition: all 0.2s;
     margin: 0 auto;
@@ -11,13 +13,19 @@
    
 }
 body {
-    background: #20262E;
+    background-image: url(../dogBackground.jpg); 
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #464646;
     padding: 20px;
     font-family: Helvetica;
   }
   
+ 
   #banner-message {
-    background: #fff;
+    background: rgba(39, 37, 37, 0.945);
     border-radius: 4px;
     padding: 20px;
     font-size: 25px;
@@ -26,9 +34,43 @@ body {
     margin: 0 auto;
     width: 500px;
   }
+
+  #clear_search  {
+
+    background:rgba(253, 194, 0, 0.877);
+    font-weight: bolder;
+  }
+
+  #clear_search:hover {
+    background: rgb(255, 251, 4);
+  }
+
+  #breed_search {
+    background:rgb(167, 165, 165);
+  }
+
+  #breed_search:hover {
+    background: rgb(255, 254, 254);
+  }
+
+  .breed_select{
+    background:rgb(167, 165, 165);
+  }
+
+  .breed_select:hover{
+    background:rgb(255, 254, 254);
+  }
+
+  .breed_size_select{
+    background:rgb(167, 165, 165);
+  }
+
+  .breed_size_select:hover{
+    background:rgb(255, 254, 254);
+  }
   
   #breed_data {
-    background: #fff;
+    background: rgba(39, 37, 37, 0.945);
     border-radius: 4px;
     padding: 20px;
     font-size: 12px;
@@ -41,6 +83,11 @@ body {
   #breed_image {
     background: #fff;
     margin: 0 auto;
-    width: 460px;
+    width: 500px;
+  }
+
+  #breed_data_table{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
   }
   

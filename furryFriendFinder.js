@@ -1,6 +1,34 @@
 // flow of search input of search or selector selects breed and initiates AJAX call to THE DOG API to pull breed
 
-var breeds; // declares local variable and sets it to undefined
+var breeds; // declares global variable and sets it to undefined
+
+
+//API request settings 
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "https://api.thedogapi.com/v1/breeds",
+  "method": "GET",
+  "headers": {
+    "x-api-key": "live_QyDVeeXLCMf0Cd21z8ELFpNweTBePrxnsvXxq2yqmDJ3Ydivy5lQpMF1hbVKRdNm"
+  }
+}
+
+// Set up function that loads all breeds images and data into the viewer upon set up 
+// function showAllBreeds(breeds){
+//   for (var i=0; i< breeds.length; i++){
+//     console.log(breeds[i]); 
+//     //var $dog = (getDogImageByBreed(breeds[i].id) + displayBreedData(breeds[i]));
+//     //console.log($dog); 
+//     var $dogBreeds = $(`<div class ='dogBreeds'><div id="breed_data"><img id="breed_image" src="" /><p> Breed Data</p><table id="breed_data_table"></table> </div>`);
+//     getDogImageByBreed(breeds[i].id)
+//     displayBreedData(breeds[i]); 
+//     console.log(breeds[i]);
+//     console.log(breeds[i].id); 
+//     $("#banner-message").append($dogBreeds);
+//   }        
+// }
+
 
 //sets up search bar input and calls searchBreeds function, which calls getDogByBreed function same as the selector
 $('#breed_search').on('input', function(e) {
@@ -24,10 +52,18 @@ function searchBreeds(search_str) {
     }
 }
 
-//set up the selector control 
+//set up function for button to clear dog data when clear search is selected 
+  $('#clear_search').click(function(e){
+    $('#breed_image').attr('src',"");
+    $('#breed_data_table').empty(); 
+    //$('.breed_size_select')          //needs to reset the size selector to blank 
+  }); 
+
+//set up the  breed selector control 
 
 var $breed_select = $(`select.breed_select`); 
 $breed_select.change(function(){
+  $('button').click(); 
     var dataId = $(this).children(":selected").attr("id")
     var imageId = $(this).children(":selected").attr("id");
     console.log(dataId);
@@ -48,12 +84,17 @@ function populateBreedsSelect(breeds) {
     });
   }
 
+// set up the breed_size selector control 
+
+
+
   // load all breeds to from the API and sets breeds variable equal to the data of dogs 
 function getBreeds() {
-    $.get('https://api.thedogapi.com/v1/breeds', (data) => {
-        console.log(data)
+  $.ajax(settings).done(function (data) {
+    console.log(data);
         populateBreedsSelect(data)
         breeds = data
+        // showAllBreeds(breeds); 
   });
 }
 
@@ -93,7 +134,10 @@ function getDogDataByBreed(data) {
     $('#breed_data_table').empty();
     console.log(data); 
     console.log(breeds); // iterrate through breeds and match ID and return that breed to solve the selector issue. 
-            
+    for (var i=0; i< breeds.length; i++){
+      if (breeds[i].id == data)
+      displayBreedData(breeds[i]); 
+    }        
 }
      
 
